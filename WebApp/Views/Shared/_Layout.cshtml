@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Boostrap include -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content//lib/font-awesome/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<!-- De layout file hierin staat de standaard layout die geinclude word op alle pagina's -->
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("Het koude frietje", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <!-- Navigatie balk-->
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin">Hoofdpagina</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/product">Producten</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user">Bestellingen</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Log uit", "logoff", "account", new { area = "" }, null)</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <!-- Copyright -->
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Het Koude Frietje</p>
+        </footer>
+    </div>
+    <script src="~/Content/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Content/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

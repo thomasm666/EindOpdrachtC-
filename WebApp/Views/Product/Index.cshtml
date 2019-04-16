@@ -1,0 +1,64 @@
+﻿@model ProductsViewModel
+@{
+    ViewBag.Title = "Products list";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Alle huidige producten -->
+<br />
+<div class="row">
+    <div class="col">
+        <h1>Products List
+        <a href="/product/edit" class="float-right"><i class="fa fa-plus"></i></a>
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table style="width: 100%;">
+            <thead>
+                <tr style="border-bottom: 1px solid #c7c7c7;">
+                    <th scope="col">Naam</th>
+                    <th scope="col">Prijs</th>
+                    <th scope="col">Afbeeling</th>
+                    <th scope="col">Actie</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (0 != Model.Products.Count)
+                {
+                    <!-- Foreach van alle bestaande producten -->
+                    foreach (var p in Model.Products)
+                    {
+                <tr>
+                    <!-- laat prijs/naam zien van product uit de model -->
+
+                    <td>@p.Name</td>
+                    <td>@(p.Price)$</td>
+                    <td>
+                        <img src="@(string.IsNullOrEmpty(p.Image) ? "/content/images/placeholder-image.png"
+                                        : Model.ImagesFolder + p.Image )" style="width: 100px;" />
+                    </td>
+                    <td>
+                        <a class="btn" href="/product/delete/@p.Id">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                        <a class="btn" href="/product/edit/@p.Id">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+                    }
+                }
+                else
+                {
+                    <!-- Als er geen producten beschikbaar zijn -->
+                    <tr>
+                        <td colspan="4" style="text-align: center; line-height: 50px;">Geen producten</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<br />

@@ -1,0 +1,52 @@
+﻿@model UserOrdersViewModel
+@{
+    ViewBag.Title = "Today's Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Form voor het laten zien van orders in de keuken -->
+<br />
+<div class="row">
+    <div class="col">
+        <h1>Today's Orders
+        <a href="/user" class="float-right"><i class="fas fa-sync-alt"></i></a></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table style="width: 100%;" id="orders-list">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tijd</th>
+                    <th scope="col">Producten</th>
+                    <th scope="col">Totale hoeveelheid</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Alle huidige producten -->
+                @foreach (var o in Model.Orders)
+                {
+                    <tr style="line-height: 30px;" order-id="@o.Id" class="@(o.Done ? "order-done" : "order-pending")">
+                        <td>@o.Id</td>
+                        <td>@o.Created</td>
+                        <td>@o.Items.Count</td>
+                        <td>@o.Items.ToList().Sum(p => p.Price * p.Quantity)$</td>
+                        <td><i class="fa @(o.Done ? "fa-check" : "fa-list")"></i></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<br/>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#orders-list tbody tr').on('click', function (e) {
+                const id = $(this).attr('order-id');
+                document.location.href = "/user/order/" + id;
+            });
+        });
+    </script>
+}

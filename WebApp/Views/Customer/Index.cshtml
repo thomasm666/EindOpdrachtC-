@@ -1,0 +1,237 @@
+﻿@model CustomerViewModel
+@{
+    ViewBag.Title = "Burgers & Fries";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Menu voor het bestellen van producten voor klanten -->
+<br />
+<div class="row">
+    <div class="col">
+        <h1>
+            Het Koude Frietje
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <table style="width: 100%;" id="menu-table">
+            <thead>
+                <tr style="font-size: x-large;">
+                    <td style="font-size: x-large;">Producten</td>
+                    <td style="font-size: x-large;" class="text-right">
+                        <a href="/order/save" id="btn-cart"><span id="cart-total"></span><i class="fas fa-shopping-cart"></i></a>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Foreach alle huidige producten die beschikbaar zijn -->
+                @if (0 != Model.Products.Count)
+                {
+                    foreach (var p in Model.Products)
+                    {
+                        <tr>
+                            <td rowspan="2">
+                                <!-- laat afbeelding zien van product-->
+                                <img src="@(string.IsNullOrEmpty(p.Image) ? "/content/images/placeholder-image.png"
+                                        : Model.ImagesFolder + p.Image )" style="width: 100px;" />
+                            </td>
+                            <!-- laat naam zien van product -->
+                            <td>@p.Name</td>
+                        </tr>
+                        <!-- laat prijs zien van product -->
+                        <tr>
+                            <td>@(p.Price)$ <a href="#" class="btn-add" product-id="@p.Id"><i class="fas fa-plus-circle text-success float-right"></i></a></td>
+                        </tr>
+                    }
+                }
+
+                else
+                {
+                    <!-- Als er geen producten zijn, laat dit zien in de view-->
+
+                    <tr>
+                        <td colspan="4" style="text-align: center; line-height: 50px;">No products</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <table style="width: 100%; display: none;" id="cart-table">
+            <thead>
+                <tr style="font-size: x-large;">
+                    <td style="font-size: x-large;" colspan="2">Jouwn karretje:</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr style="font-size: x-large;">
+                    <td style="font-size: large; text-align: right;" colspan="2">Totale prijs: <span id="total-price"></span>$</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label>Vul je adres in:</label>
+                        <textarea class="form-control" id="address"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">
+                        <button id="btn-save" class="btn btn-success mt-2">Bestel</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <table style="width: 100%; display: none;" id="final-order">
+            <tr>
+                <td colspan="2" class="text-center"><h2>Je order is geaccepteerd</h2></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center"><a href="/customer" class="pt-3 pd-3">Terug naar het menu</a></td>
+            </tr>
+        </table>
+        <table style="width: 100%; display: none;" id="error-order">
+            <tr>
+                <td colspan="2" class="text-center"><h2>Unexpected error. Please try a bit later</h2></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center"><a href="/customer" class="pt-3 pd-3">Terug naar het menu</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<br />
+<!-- Script voor de werking van het winkel karretje -->
+@section scripts{
+    <script type="text/javascript">
+
+
+    const productsList = [
+        @foreach (var p in Model.Products)
+        {
+    <text>{ id: @p.Id, name: '@p.Name', price: @p.Price },</text>
+        }
+    ];
+    const cart = {
+        Id: 0,
+        Created: new Date(),
+        Address: null,
+        Items: []
+    };
+    $(document).ready(function () {
+        $('.btn-add').on('click', function (e) {
+            e.preventDefault();
+            var id = $(this).attr('product-id');
+
+            const exItem = cart.Items.find((i) => { return i.Id == id });
+            if (exItem) {
+                exItem.Quantity++;
+            } else {
+                const product = productsList.find((p) => { return p.id == id });
+                if (product) {
+                    const item = {
+                        Id: id,
+                        Name: product.name,
+                        Price: product.price,
+                        Quantity: 1
+                    };
+                    cart.Items.push(item);
+
+
+                };
+            }
+            var total = cart.Items.reduce((a, b) => +a + +b.Quantity, 0);
+            $('#cart-total').text(total + ' ');
+            return false;
+        });
+
+        $('#btn-cart').on('click', function (e) {
+            e.preventDefault();
+            if (0 == cart.Items.length)
+                return false;
+
+            $('#menu-table').hide();
+            $('.btn-inc').off('click');
+            $('.btn-dec').off('click');
+            fillCartTable();
+            calcTotal();
+            $('#cart-table').show();
+            return false;
+        });
+
+        function fillCartTable() {
+            var tbody = $('#cart-table tbody');
+            tbody.html('');
+            cart.Items.forEach(el => {
+                console.log('foreach', el);
+                tbody.append(`<tr>
+                    <td>${el.Name}<span class="float-right">${el.Price}$ x </span></td>
+                    <td style="text-align: right;"><a href="" item-id='${el.Id}' class='btn-inc'><i class='fa fa-plus-square '></i></a>
+                    <span class="item-qty">${el.Quantity}</span>
+                    <a href="" item-id='${el.Id}' class='btn-dec'><i class='fa fa-minus-square '></i></a></td>
+                    </tr>`)
+            });
+            $('.btn-inc').on('click', function (e) {
+                e.preventDefault();
+                change($(this), true);
+                return false;
+            });
+            $('.btn-dec').on('click', function (e) {
+                e.preventDefault();
+                change($(this), false);
+                return false;
+            });
+
+            function change(elem, add) {
+                const id = elem.attr('item-id');
+                const item = cart.Items.find((i) => { return i.Id == id });
+                if (item) {
+                    const qtyCell = elem.parent().parent().find('.item-qty');
+                    var qty = +qtyCell.text();
+                    if (add) {
+                        item.Quantity++;
+                        qty++;
+                    } else if(0 < qty) {
+                        item.Quantity--;
+                        qty--;
+                    }
+                    qtyCell.text(qty);
+                    calcTotal();
+                }
+            }
+        }
+        function calcTotal() {
+            var productTotal = cart.Items.reduce((a, b) => +a + +b.Quantity, 0);
+            var priceTotal = cart.Items.reduce((a, b) => +a + +b.Quantity * b.Price, 0);
+            $('#total-price').text(priceTotal);
+            //console.log('calc total', priceTotal);
+        }
+
+        $('#btn-save').on('click', function (e) {
+            e.preventDefault();
+
+            if ('' == $('#address').val())
+                return;
+            //console.log('saving...');
+
+            cart.Address = $('#address').val();
+            $.ajax({
+                url: '/order/save',
+                data: cart,
+                method: 'post',
+                success: function (res) {
+                    if (res.success) {
+                        $('#cart-table').hide();
+                        $('#final-order').show();
+                    } else {
+                        $('#cart-table').hide();
+                        $('#error-order').show();
+                    }
+                },
+                error: function (request, status, error) {
+                    $('#cart-table').hide();
+                    $('#error-order').show();
+                }
+            });
+
+        });
+    });
+    </script>
+}

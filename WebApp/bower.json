@@ -1,0 +1,17 @@
+{
+  "name": "asp.net",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.7",
+    "jquery-validation": "*",
+    "jquery-validation-unobtrusive": "*",
+    "font-awesome": "^5.8.1",
+    "iCheck": "*",
+    "bootstrap-datepicker": "*",
+    "bootstrap-select": "*",
+    "moment": "*",
+    "jquery-slimscroll": "*"
+  }
+}

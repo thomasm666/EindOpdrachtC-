@@ -1,0 +1,81 @@
+﻿@model OrderViewModel
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var index = 1;
+}
+<br />
+@if (null != Model.Order)
+{
+    <div class="row">
+        <div class="col">
+            <h1>
+                Bestelling: @Model.Order.Id &mdash; @Model.Order.Created
+            </h1>
+        </div>
+    </div>
+    <table style="width: 100%;" id="order-info">
+        <thead>
+            <tr style="border-bottom: 1px solid #c7c7c7;">
+                <th scope="col">#</th>
+                <th scope="col">Producten</th>
+                <th scope="col">Totale hoeveelheid</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Order.Items)
+            {
+            <tr style="line-height: 35px; border-top: 1px solid #c7c7c7;">
+                <td style="font-weight: bold;">@index</td>
+                <td>@item.Name</td>
+                <td>@item.Quantity</td>
+            </tr>
+                index++;
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">
+                    Bestelling adres: @Model.Order.Address
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="row">
+        <div class="col-1">
+            <a class="btn btn-primary text-white @(Model.PrevNext.PrevId.HasValue ? "" : "disabled")" 
+               href="@(Model.PrevNext.PrevId.HasValue ? "/user/order/" + Model.PrevNext.PrevId.Value.ToString() : "")">Vorige</a>
+        </div>
+        <div class="col-10 text-center">
+            @if (Model.Order.Done)
+            {
+                <span>Bestelling is verwerkt</span>
+            }
+            else
+            {
+                <a class="btn btn-primary" href="/order/togglestate/@Model.Order.Id">Klaar</a>
+            }
+        </div>
+        <div class="col-1">
+            <a class="btn btn-primary text-white @(Model.PrevNext.NextId.HasValue ? "" : "disabled") " 
+               href="@(Model.PrevNext.NextId.HasValue ? "/user/order/" + Model.PrevNext.NextId.Value.ToString() : "")">Volgende</a>
+        </div>
+    </div>
+    
+}
+else
+{
+        <div class="row">
+            <div class="col-12">
+                <h2>
+                    Error! Bestelling niet gevonden!
+                </h2>
+            </div>
+            <div class="col-12">
+                <a href="/user">
+                    Terug naar bestellingenlijst
+                </a>
+            </div>
+        </div>
+}
+<br />
