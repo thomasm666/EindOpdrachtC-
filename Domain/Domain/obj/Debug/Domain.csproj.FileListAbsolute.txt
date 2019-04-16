@@ -1,0 +1,16 @@
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\bin\Debug\OrderFoodApp.Domain.dll.config
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\bin\Debug\OrderFoodApp.Domain.dll
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\bin\Debug\OrderFoodApp.Domain.pdb
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\bin\Debug\EntityFramework.dll
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\bin\Debug\EntityFramework.xml
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\obj\Debug\Domain.csproj.CoreCompileInputs.cache
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\obj\Debug\Domain.csproj.CopyComplete
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\obj\Debug\OrderFoodApp.Domain.dll
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\obj\Debug\OrderFoodApp.Domain.pdb
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\Domain\Domain\obj\Debug\Domain.csprojAssemblyReference.cache

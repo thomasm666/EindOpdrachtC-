@@ -1,0 +1,2 @@
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\WebApp\obj\Release\WebApp.csprojAssemblyReference.cache
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\WebApp\obj\Release\WebApp.csproj.CoreCompileInputs.cache

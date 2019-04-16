@@ -1,3 +1,0 @@
-# orderfoodapp
-
-# EindOpdrachtC-

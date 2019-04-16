@@ -1,0 +1,6 @@
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\DTOs\bin\Debug\DTOs.dll
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\DTOs\bin\Debug\DTOs.pdb
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\DTOs\obj\Debug\DTOs.csproj.CoreCompileInputs.cache
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\DTOs\obj\Debug\DTOs.dll
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\DTOs\obj\Debug\DTOs.pdb
+C:\Users\thomasmoed\source\repos\ofapp-orderfoodapp-2868445275ba\DTOs\obj\Debug\DTOs.csprojAssemblyReference.cache
