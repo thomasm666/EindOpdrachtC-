@@ -71,6 +71,8 @@ namespace OrderFoodApp.WebApp.Controllers
             return View(model);
         }
 
+
+
         [HttpGet]
         public ActionResult Lockedout()
         {
@@ -82,6 +84,10 @@ namespace OrderFoodApp.WebApp.Controllers
         {
             return View();
         }
+        
+        /// <summary>
+        /// Log uit
+        /// </summary>
         [HttpGet]
         public ActionResult Logoff()
         {
