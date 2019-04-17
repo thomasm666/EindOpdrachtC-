@@ -19,6 +19,11 @@ namespace OrderFoodApp.WebApp.Controllers
         {
             _ordersService = ordersService;
         }
+        
+        /// <summary>
+        /// Orders van vandaag
+        /// </summary>
+
 
         [HttpGet]
         public ActionResult Index(string id)
@@ -29,7 +34,8 @@ namespace OrderFoodApp.WebApp.Controllers
             };
             return View(model);
         }
-
+        
+      
         [HttpGet]
         public ActionResult Order(int id)
         {
