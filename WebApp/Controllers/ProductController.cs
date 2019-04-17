@@ -36,7 +36,7 @@ namespace OrderFoodApp.WebApp.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            /// Laat producten zien
+            /// Edit producten
             var model = new EditProductViewModel();
             if (id.HasValue && 0 != id.Value)
             {
@@ -50,7 +50,10 @@ namespace OrderFoodApp.WebApp.Controllers
             }
             
         }
-
+        
+        /// <summary>
+        /// Edit product
+        /// </summary>
         [HttpPost]
         public ActionResult Edit(EditProductViewModel model)
         {
