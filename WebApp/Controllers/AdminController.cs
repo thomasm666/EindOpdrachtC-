@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 /// <summary>
-/// Httpget API admin
+/// Httpget API admin orders viewmodel
 /// </summary>
 namespace OrderFoodApp.WebApp.Controllers
 {
